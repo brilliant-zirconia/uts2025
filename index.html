@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTS PRAK SIG WEB</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            margin: 20px 0;
+        }
+        #map-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+        #map {
+            width: 80%;
+            max-width: 960px;
+            height: 500px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    
+        /* Tambahan untuk paragraf rata kanan-kiri */
+        p {
+            text-align: justify;
+            margin: 0 auto;
+            width: 80%;
+        }
+    
+        /* Tambahan agar tabel di tengah */
+        table {
+            margin: auto;
+            border: 1px solid black;
+        }
+        th, td {
+            border: 1px solid black;
+        }
+    </style>
+    
+</head>
+<body>
+	<h1>Ujian Tengah Semester Praktikum SIG WEB</h1>
+    <h3>Kegiatan Praktikum yang Telah Dipelajari</h3>
+
+	
+	<p>Praktik SIG Web Minggu pertama dan kedua adalah perkenalan tentang HTML, CSS, JavaScript menggunakan W3school sebagai panudan belajar.
+        Praktikum minggu ketiga yaitu membuat halaman HTML sederhana, meliputi pembuatan heading, font yang berbeda, tabel, dan juga memasukkan 
+        gambar. Kegiatan yang dilakukan di praktikum ketiga dan keempat yaitu membuat bootstrap. Misalnya untuk formulir validasi. Minggu kelima dan keenam
+        mulai melakukan pembuatan peta lokasi geodesi ugm menggunakan web dengana leaflet. Begitupun juga di minggu ketujuh membuat peta interaktif menggunakan leaflet dengan 
+        penambahan batas kota dan navbar.
+    </p>
+	
+	<a href="https://geodesi.ugm.ac.id/apa-itu-geodesi/">
+	Link ini mengarah ke Website Teknik Geodesi
+	</a>
+    
+	<p><i>dibuat oleh Brilliant Zirconia.</i> <b>angkatan 2023</b>
+	
+	<p><span style="color:red;"> Baris yang ini warnanya merah</span>.</p>
+    <p><span style="color:blue;"> Baris yang ini warnanya biru</span>.</p>
+	
+	<h4>Tabel Identitas Diri</h4>
+	
+	<style>
+	table, th, td {border:1px solid black;}
+	</style>
+	<table style="width:30%; margin: auto;"></table>
+	<table style="width:30%">
+	<tr>
+		<th>Nama</th>
+		<th>NIM</th>
+	</tr>
+	<tr>
+		<td>Brilliant Zirconia</td>
+		<td>23/518961/TK/57200</td>
+	</tr>
+	</table>
+	
+	<h4>Form Validasi Pekerjaan</h4>
+	
+	<p>Silahkan Mengisi Formulir Validasi Pejerjaan Selesai:</p>
+	
+	
+    </style>
+    <script>
+        function cekPassword() {
+            let pass = document.querySelector("#password").value;
+            let pesan = document.querySelector("#hasil");
+
+            if (pass === "Selesai") {
+                pesan.textContent = "Password benar";
+                pesan.style.color = "green";
+            } else {
+                pesan.textContent = "Sign Error";
+                pesan.style.color = "red";
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="password" id="password">
+    <button onclick="cekPassword()">Klik</button>
+    <p id="hasil"></p>
+
+    <h1>Peta Lokasi Teknik Geodesi UGM</h1>
+    <div id="map-container">
+        <div id="map"></div>
+    </div>
+    <script>
+        var map = L.map('map', { 
+            center: [-7.79558, 110.36949], 
+            zoom: 12 
+        }); 
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { 
+            attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors' 
+        }).addTo(map);
+        
+        //tambahkan marker
+        var marker = L.marker([-7.7722215, 110.3800187]).bindPopup('<b>Fakultas Psikologi UGM</b><br><a href="https://psychology.ugm.ac.id" target="_blank">Kunjungi Website</a><br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Logo_UGM.svg/1200px-Logo_UGM.svg.png" alt="Fakultas Psikologi" width="100">').addTo(map);
+        var marker = L.marker([-7.7689885, 110.3762716]).bindPopup('<b>Fakultas Farmasi UGM</b><br><a href="https://farmasi.ugm.ac.id" target="_blank">Kunjungi Website</a><br><img src="https://farmasi.ugm.ac.id/wp-content/uploads/2020/09/logo-ugm-150x150.png" alt="Fakultas Farmasi" width="100">').addTo(map);
+        var marker = L.marker([-7.7672831, 110.3849343]).bindPopup(' <b>Fakultas Kedokteran Hewan UGM</b><br><a href="https://fkh.ugm.ac.id" target="_blank">Kunjungi Website</a><br><img src="https://fkh.ugm.ac.id/wp-content/uploads/2022/12/logo-ugm.png" alt="Fakultas Kedokteran Hewan" width="100">>').addTo(map);
+        var marker = L.marker([-7.7653161, 110.3766087]).bindPopup('<b>Fakultas Biologi UGM</b><br><a href="https://biologi.ugm.ac.id" target="_blank">Kunjungi Website</a><br><img src="https://biologi.ugm.ac.id/wp-content/uploads/2021/04/logo-ugm.png" alt="Fakultas Biologi" width="100">').addTo(map);
+        var marker = L.marker([-7.7649128, 110.3725495]).bindPopup('<b>Fakultas Teknik UGM</b><br><a href="https://ft.ugm.ac.id" target="_blank">Link Teknik Geodesi</a><br><img src="https://ft.ugm.ac.id/wp-content/uploads/2021/05/logo-ugm.png" alt="Fakultas Teknik" width="100">').addTo(map);
+        var marker = L.marker([-7.7649128, 110.3725495]).bindPopup('<b>Fakultas Psikologi UGM</b><br><a href="https://ft.ugm.ac.id" target="_blank">Link Teknik Geodesi</a><br><img src="https://ft.ugm.ac.id/wp-content/uploads/2021/05/logo-ugm.png" alt="Fakultas Teknik" width="100">').addTo(map);
+        
+   
+    </script>
+
+
+</body>
+</html>
+
+
